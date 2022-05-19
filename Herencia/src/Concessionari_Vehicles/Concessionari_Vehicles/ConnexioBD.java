@@ -14,13 +14,13 @@ public class ConnexioBD {
      * @param: Connexio a la base de dades
      * 
      */
-
-     
+    
+    
     public void connexio() {
 
         String servidor = "jdbc:mysql://localhost:3306/";
         String usuari = "root";
-        String passwd = "Client";
+        String passwd = "client";
         String bbdd = "db_esqui";
 
         try {

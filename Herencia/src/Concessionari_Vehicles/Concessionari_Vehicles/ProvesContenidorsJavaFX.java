@@ -54,16 +54,32 @@ public class ProvesContenidorsJavaFX extends Application {
     Label lblNom;
     Label lblCognom;
     Label lblDni;
+    Label lblNumFamilia;
+    Label lblNivell;
+    Label lblDataFederat;
+    Label lblDataFamiliar;
 
     TextField txtNom;
     TextField txtCognom;
     TextField txtDni;
+    TextField txtNumFamilia;
+    TextField txtNivell;
+    TextField txtDataFederat;
+    TextField txtDataFamiliar;
 
     Label lblNomCurs;
     Label lblIdCurs;
+    Label lblPreuCurs;
+    Label lblPreuFinalCurs;
 
     TextField txtNomCurs;
     TextField txtIdCurs;
+    TextField txtPreuCurs;
+    TextField txtPreuFinalCurs;
+
+    Tab tab1;
+    Tab tab2;
+    Tab tab3;
 
     public static void main(String[] args) throws SQLException {
 
@@ -73,7 +89,6 @@ public class ProvesContenidorsJavaFX extends Application {
         consultarCursosIndividual();
         consultarCursosColectiu();
         consultarClient();
-
         launch();
 
     }
@@ -153,12 +168,17 @@ public class ProvesContenidorsJavaFX extends Application {
                     txtDni.setText(client.getDni());
                     txtNom.setText(client.getNom());
                     txtCognom.setText(client.getCognom());
+                    txtNumFamilia.setText(client.getnumFamilia());
+                    txtNivell.setText(String.valueOf(client.getNivell()));
+                    txtDataFederat.setText(String.valueOf(client.getDataFederat()));
+                    txtDataFamiliar.setText(String.valueOf(client.getDataFamiliar()));
+
+                    if (tab1.isSelected())
+                        System.out.println("CalcularPreu22");
                 }
             }
         });
-
         return vlateral;
-
     }
 
     private VBox formulariCentral() {
@@ -174,16 +194,42 @@ public class ProvesContenidorsJavaFX extends Application {
         lblNom = new Label("Nom");
         lblCognom = new Label("Cognom");
         lblDni = new Label("Dni");
+        lblNumFamilia = new Label("NumFamilia");
+        lblNivell = new Label("Nivell");
+        lblDataFederat = new Label("DataFederat");
+        lblDataFamiliar = new Label("DataFamiliar");
+
         txtNom = new TextField();
+        txtNom.setDisable(true);
         txtCognom = new TextField();
+        txtCognom.setDisable(true);
         txtDni = new TextField();
-        
+        txtDni.setDisable(true);
+        txtNumFamilia = new TextField();
+        txtNumFamilia.setDisable(true);
+        txtNivell = new TextField();
+        txtNivell.setDisable(true);
+        txtDataFederat = new TextField();
+        txtDataFederat.setDisable(true);
+        txtDataFamiliar = new TextField();
+        txtDataFamiliar.setDisable(true);
+
         gp.add(lblNom, 0, 0);
         gp.add(txtNom, 1, 0);
         gp.add(lblCognom, 0, 1);
         gp.add(txtCognom, 1, 1);
         gp.add(lblDni, 0, 2);
         gp.add(txtDni, 1, 2);
+
+        gp.add(lblNumFamilia, 0, 3);
+        gp.add(txtNumFamilia, 1, 3);
+        gp.add(lblNivell, 0, 4);
+        gp.add(txtNivell, 1, 4);
+        gp.add(lblDataFederat, 0, 5);
+        gp.add(txtDataFederat, 1, 5);
+        gp.add(lblDataFamiliar, 0, 6);
+        gp.add(txtDataFamiliar, 1, 6);
+
         vlateral.getChildren().add(gp);
 
         VBox vlateral2 = new VBox();
@@ -195,14 +241,26 @@ public class ProvesContenidorsJavaFX extends Application {
 
         lblNomCurs = new Label("Nom");
         lblIdCurs = new Label("ID");
+        lblPreuCurs = new Label("PreuCurs");
+        lblPreuFinalCurs = new Label("PreuFinalCurs");
 
         txtNomCurs = new TextField();
+        txtNomCurs.setDisable(true);
         txtIdCurs = new TextField();
+        txtIdCurs.setDisable(true);
+        txtPreuCurs = new TextField();
+        txtPreuCurs.setDisable(true);
+        txtPreuFinalCurs = new TextField();
+        txtPreuFinalCurs.setDisable(true);
 
-        gp2.add(lblNomCurs, 0, 8);
-        gp2.add(txtNomCurs, 1, 8);
-        gp2.add(lblIdCurs, 0, 9);
-        gp2.add(txtIdCurs, 1, 9);
+        gp2.add(lblNomCurs, 0, 1);
+        gp2.add(txtNomCurs, 1, 1);
+        gp2.add(lblIdCurs, 0, 2);
+        gp2.add(txtIdCurs, 1, 2);
+        gp2.add(lblPreuCurs, 0, 3);
+        gp2.add(txtPreuCurs, 1, 3);
+        gp2.add(lblPreuFinalCurs, 0, 4);
+        gp2.add(txtPreuFinalCurs, 1, 4);
 
         // return gp;
 
@@ -213,25 +271,25 @@ public class ProvesContenidorsJavaFX extends Application {
 
     }
 
-    private GridPane formulariCentral2() {
-        GridPane gp = new GridPane();
-        gp.setAlignment(Pos.CENTER);
+    // private GridPane formulariCentral2() {
+    // GridPane gp = new GridPane();
+    // gp.setAlignment(Pos.CENTER);
 
-        lblNom = new Label("Nom");
-        lblCognom = new Label("Cognom");
-        lblDni = new Label("Dni");
-        txtNom = new TextField();
-        txtCognom = new TextField();
-        txtDni = new TextField();
+    // lblNom = new Label("Nom");
+    // lblCognom = new Label("Cognom");
+    // lblDni = new Label("Dni");
+    // txtNom = new TextField();
+    // txtCognom = new TextField();
+    // txtDni = new TextField();
 
-        gp.add(lblNom, 0, 0);
-        gp.add(txtNom, 1, 0);
-        gp.add(lblCognom, 0, 1);
-        gp.add(txtCognom, 1, 1);
-        gp.add(lblDni, 0, 2);
-        gp.add(txtDni, 1, 2);
-        return gp;
-    }
+    // gp.add(lblNom, 0, 0);
+    // gp.add(txtNom, 1, 0);
+    // gp.add(lblCognom, 0, 1);
+    // gp.add(txtCognom, 1, 1);
+    // gp.add(lblDni, 0, 2);
+    // gp.add(txtDni, 1, 2);
+    // return gp;
+    // }
 
     private Pane partInferior() {
         Button btnNeteijar = new Button("Neteijar");
@@ -261,6 +319,11 @@ public class ProvesContenidorsJavaFX extends Application {
         txtNom.setText("");
         txtCognom.setText("");
         txtDni.setText("");
+        txtNumFamilia.setText("");
+        txtNivell.setText("");
+        txtDataFederat.setText("");
+        txtDataFamiliar.setText("");
+
         System.out.println(txtNomCurs.getText());
         txtNomCurs.setText("");
         txtIdCurs.setText("");
@@ -278,9 +341,9 @@ public class ProvesContenidorsJavaFX extends Application {
 
         TabPane tp = new TabPane();
 
-        Tab tab1 = new Tab("Colectius", cursosColectius());
-        Tab tab2 = new Tab("Competicio", cursosCometicio());
-        Tab tab3 = new Tab("Individual", cursosIndividuals());
+        tab1 = new Tab("Colectius", cursosColectius());
+        tab2 = new Tab("Competicio", cursosCometicio());
+        tab3 = new Tab("Individual", cursosIndividuals());
 
         tp.getTabs().add(tab1);
         tp.getTabs().add(tab2);
@@ -322,13 +385,12 @@ public class ProvesContenidorsJavaFX extends Application {
                 if (CI != null) {
                     txtNomCurs.setText(String.valueOf(CI.getNom()));
                     txtIdCurs.setText(String.valueOf(CI.getId()));
-
+                    txtPreuCurs.setText(String.valueOf(CI.getPreuFinal()));
+                    System.out.println("CalcularPreu1");
                 }
             }
         });
-
         return vlateral;
-
     }
 
     private Pane cursosCometicio() {
@@ -356,8 +418,8 @@ public class ProvesContenidorsJavaFX extends Application {
         colDataFi.setCellValueFactory(new PropertyValueFactory<>("dataFi"));
         colPreu.setCellValueFactory(new PropertyValueFactory<>("preu"));
 
-        for (CursCompeticio CC : Ccompeticio) {
 
+        for (CursCompeticio CC : Ccompeticio) {
             tblClients.getItems().add(CC);
         }
 
@@ -373,10 +435,9 @@ public class ProvesContenidorsJavaFX extends Application {
                 }
             }
         });
-
         return vlateral;
-
     }
+
 
     private Pane cursosIndividuals() {
         VBox vlateral = new VBox();
@@ -395,11 +456,9 @@ public class ProvesContenidorsJavaFX extends Application {
 
         // colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-       
 
         colPreuHora.setCellValueFactory(new PropertyValueFactory<>("preuHora"));
 
-        
         for (CursIndividual CC : ci) {
             tblClients.getItems().add(CC);
         }
@@ -412,7 +471,6 @@ public class ProvesContenidorsJavaFX extends Application {
                 if (CI != null) {
                     txtNomCurs.setText(String.valueOf(CI.getNom()));
                     txtIdCurs.setText(String.valueOf(CI.getId()));
-                    
                 }
             }
         });
@@ -453,18 +511,19 @@ public class ProvesContenidorsJavaFX extends Application {
     }
 
     private static void consultarCursosColectiu() throws SQLException {
-
+    
         connexioBD = conn.getConnexioBD();
-
+       
         String SQL = "select * from curs,curs_colectiu,dies where curs.id = curs_colectiu.id and dies.id = curs_colectiu.id_dia;";
+
+
 
         PreparedStatement ps = connexioBD.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             cc.add(new CursColectiu(rs.getInt("id"), rs.getString("nom"), rs.getString("dni_monitor"),
-            rs.getString("nom_dia"), rs.getInt("id_dia"), rs.getInt("preu_final")));
+                    rs.getString("nom_dia"), rs.getInt("id_dia"), rs.getInt("preu_final")));
         }
-
     }
 
     private static void consultarClient() throws SQLException {
@@ -476,23 +535,28 @@ public class ProvesContenidorsJavaFX extends Application {
         PreparedStatement ps = connexioBD.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
+
             // System.out.println(rs.getDate("DATAFED"));
             // Clients.add(new Client(rs.getString("dni"), rs.getString("nom"),
             // rs.getString("cognom"),
             // rs.getInt("telefon"), rs.getString("email"), rs.getString("num_fam"),
             // rs.getString("num_federacio"), rs.getInt("nivell"),
             // rs.getDate("DATAFED").toLocalDate(), rs.getDate("DATAFAM").toLocalDate()));
+
             System.out.println(getLocalDate(rs, "DATAFED"));
 
             Clients.add(new Client(rs.getString("dni"), rs.getString("nom"), rs.getString("cognom"),
                     rs.getInt("telefon"), rs.getString("email"), rs.getString("num_fam"), rs.getString("num_federacio"),
                     rs.getInt("nivell"), getLocalDate(rs, "DATAFED"), getLocalDate(rs, "DATAFAM")));
-        }
+        } 
     }
 
     static public LocalDate getLocalDate(ResultSet rs, String columnName) throws SQLException {
         Date sqlDate = rs.getDate(columnName);
         return sqlDate == null ? null : sqlDate.toLocalDate();
     }
+
+
+
 
 }
