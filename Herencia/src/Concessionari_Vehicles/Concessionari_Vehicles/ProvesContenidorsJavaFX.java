@@ -162,7 +162,11 @@ public class ProvesContenidorsJavaFX extends Application {
     }
 
     private VBox formulariCentral() {
+        VBox global = new VBox();
+        global.setAlignment(Pos.CENTER);
         VBox vlateral = new VBox();
+        vlateral.getChildren().addAll(new Label("Clients"));
+
         vlateral.setAlignment(Pos.CENTER);
         GridPane gp = new GridPane();
         gp.setAlignment(Pos.CENTER);
@@ -173,13 +177,21 @@ public class ProvesContenidorsJavaFX extends Application {
         txtNom = new TextField();
         txtCognom = new TextField();
         txtDni = new TextField();
-
+        
         gp.add(lblNom, 0, 0);
         gp.add(txtNom, 1, 0);
         gp.add(lblCognom, 0, 1);
         gp.add(txtCognom, 1, 1);
         gp.add(lblDni, 0, 2);
         gp.add(txtDni, 1, 2);
+        vlateral.getChildren().add(gp);
+
+        VBox vlateral2 = new VBox();
+        vlateral2.getChildren().addAll(new Label("Cursos"));
+
+        vlateral2.setAlignment(Pos.CENTER);
+        GridPane gp2 = new GridPane();
+        gp2.setAlignment(Pos.CENTER);
 
         lblNomCurs = new Label("Nom");
         lblIdCurs = new Label("ID");
@@ -187,15 +199,17 @@ public class ProvesContenidorsJavaFX extends Application {
         txtNomCurs = new TextField();
         txtIdCurs = new TextField();
 
-        gp.add(lblNomCurs, 0, 8);
-        gp.add(txtNomCurs, 1, 8);
-        gp.add(lblIdCurs, 0, 9);
-        gp.add(txtIdCurs, 1, 9);
+        gp2.add(lblNomCurs, 0, 8);
+        gp2.add(txtNomCurs, 1, 8);
+        gp2.add(lblIdCurs, 0, 9);
+        gp2.add(txtIdCurs, 1, 9);
 
         // return gp;
 
-        vlateral.getChildren().add(gp);
-        return vlateral;
+        vlateral2.getChildren().add(gp2);
+        global.getChildren().add(vlateral);
+        global.getChildren().add(vlateral2);
+        return global;
 
     }
 
@@ -292,7 +306,7 @@ public class ProvesContenidorsJavaFX extends Application {
         vlateral.getChildren().add(tblClients);
 
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colDia.setCellValueFactory(new PropertyValueFactory<>("idDia"));
+        colDia.setCellValueFactory(new PropertyValueFactory<>("dia"));
         colPreuFinal.setCellValueFactory(new PropertyValueFactory<>("preuFinal"));
 
         for (CursColectiu CC : cc) {
@@ -370,7 +384,6 @@ public class ProvesContenidorsJavaFX extends Application {
         vlateral.setAlignment(Pos.CENTER);
 
         TableView<CursIndividual> tblClients = new TableView<>();
-        // TableColumn<CursCompeticio, String> colId = new TableColumn<>("ID");
         TableColumn<CursIndividual, String> colNom = new TableColumn<>("NOM");
         TableColumn<CursIndividual, String> colPreuHora = new TableColumn<>("Preu Hora");
 
@@ -382,12 +395,12 @@ public class ProvesContenidorsJavaFX extends Application {
 
         // colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+       
 
         colPreuHora.setCellValueFactory(new PropertyValueFactory<>("preuHora"));
 
+        
         for (CursIndividual CC : ci) {
-
             tblClients.getItems().add(CC);
         }
 
@@ -399,6 +412,7 @@ public class ProvesContenidorsJavaFX extends Application {
                 if (CI != null) {
                     txtNomCurs.setText(String.valueOf(CI.getNom()));
                     txtIdCurs.setText(String.valueOf(CI.getId()));
+                    
                 }
             }
         });
@@ -442,13 +456,13 @@ public class ProvesContenidorsJavaFX extends Application {
 
         connexioBD = conn.getConnexioBD();
 
-        String SQL = "select * from curs,curs_colectiu where curs.id = curs_colectiu.id;";
+        String SQL = "select * from curs,curs_colectiu,dies where curs.id = curs_colectiu.id and dies.id = curs_colectiu.id_dia;";
 
         PreparedStatement ps = connexioBD.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             cc.add(new CursColectiu(rs.getInt("id"), rs.getString("nom"), rs.getString("dni_monitor"),
-                    rs.getInt("id_dia"), rs.getInt("preu_final")));
+            rs.getString("nom_dia"), rs.getInt("id_dia"), rs.getInt("preu_final")));
         }
 
     }
