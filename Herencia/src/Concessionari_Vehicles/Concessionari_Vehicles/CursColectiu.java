@@ -1,42 +1,40 @@
 package Concessionari_Vehicles;
 
+import java.time.LocalDate;
+
 public class CursColectiu extends Curs {
 
-    private int idDia;
-    private int preuFinal;
-    private String dia;
-
+   
+    private int preu;
+    private LocalDate data;
     
-    public CursColectiu(int id, String nom,  String dni_monitor, String dia, int idDia, int preuFinal) {
+    public CursColectiu(int id, String nom,  String dni_monitor, int preu,LocalDate data) {
         super(id, nom, dni_monitor);
-        this.idDia = idDia;
-        this.dia = dia;
-        this.preuFinal = preuFinal;
+      
+        this.preu = preu;
+        this.data = data;
     }
 
-    public int getIdDia() {
-        return idDia;
+  
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setIdDia(int idDia) {
-        this.idDia = idDia;
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
+
+
 
     public int getPreuFinal() {
-        return preuFinal;
+        return preu;
     }
 
-    public void setPreuFinal(int preuFinal) {
-        this.preuFinal = preuFinal;
+    public void setPreuFinal(int preu) {
+        this.preu = preu;
     }
 
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
 
     
 

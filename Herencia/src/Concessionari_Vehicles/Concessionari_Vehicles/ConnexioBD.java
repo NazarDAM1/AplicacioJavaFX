@@ -21,7 +21,7 @@ public class ConnexioBD {
         String servidor = "jdbc:mysql://localhost:3306/";
         String usuari = "root";
         String passwd = "client";
-        String bbdd = "db_esqui";
+        String bbdd = "db_esqui2";
 
         try {
             connexioBD = DriverManager.getConnection(servidor + bbdd, usuari, passwd);
